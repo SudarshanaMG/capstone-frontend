@@ -1,0 +1,98 @@
+<div class="contact-container">
+    <div class="contact-content">
+      <h1>Contact Us</h1>
+      
+      <div class="contact-info">
+        <section class="contact-details">
+          <h2>Get in Touch</h2>
+          <p>Have questions about our construction cost estimation services? We're here to help!</p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <h3>Email</h3>
+              <p><a href="mailto:support&#64;constructioncostestimator.com">support&#64;constructioncostestimator.com</a></p>
+            </div>
+  
+            <div class="contact-method">
+              <h3>Phone</h3>
+              <p><a href="tel:+1-555-123-4567">+1 (555) 123-4567</a></p>
+            </div>
+  
+            <div class="contact-method">
+              <h3>Office Hours</h3>
+              <p>Monday - Friday: 9:00 AM - 5:00 PM EST</p>
+            </div>
+          </div>
+        </section>
+  
+        <section class="contact-form">
+          <h2>Send us a Message</h2>
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input 
+                type="text" 
+                id="name"
+                name="name"
+                [(ngModel)]="contactData.name"
+                required
+                #name="ngModel"
+                placeholder="Enter your name">
+              <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <span *ngIf="name.errors?.['required']">Name is required</span>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input 
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="contactData.email"
+                required
+                email
+                #email="ngModel"
+                placeholder="Enter your email">
+              <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <span *ngIf="email.errors?.['required']">Email is required</span>
+                <span *ngIf="email.errors?.['email']">Please enter a valid email</span>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input 
+                type="text"
+                id="subject"
+                name="subject"
+                [(ngModel)]="contactData.subject"
+                required
+                #subject="ngModel"
+                placeholder="Enter message subject">
+              <div class="error-message" *ngIf="subject.invalid && (subject.dirty || subject.touched)">
+                <span *ngIf="subject.errors?.['required']">Subject is required</span>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea 
+                id="message"
+                name="message"
+                [(ngModel)]="contactData.message"
+                required
+                #message="ngModel"
+                rows="5"
+                placeholder="Enter your message"></textarea>
+              <div class="error-message" *ngIf="message.invalid && (message.dirty || message.touched)">
+                <span *ngIf="message.errors?.['required']">Message is required</span>
+              </div>
+            </div>
+  
+            <button type="submit" [disabled]="contactForm.invalid">Send Message</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,87 @@
+<div class="input-list-container">
+  <div class="list-header">
+    <h2>Property Estimations</h2>
+    <button class="add-btn" routerLink="/add-input">
+      <span class="btn-icon">+</span>
+      Add New Estimation
+    </button>
+  </div>
+
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="loader"></div>
+    <p>Loading estimations...</p>
+  </div>
+ 
+  <div class="error-message" *ngIf="error">{{ error }}</div>
+
+  <div class="empty-state" *ngIf="!isLoading && !inputs.length">
+    <img src="/assets/images/empty-state.svg" alt="No estimations">
+    <p>No property estimations found</p>
+    <span>Add your first estimation to get started</span>
+  </div>
+
+  <div class="cards-container" *ngIf="!isLoading && inputs.length">
+    <div class="input-card" *ngFor="let input of inputs">
+      <div class="card-header">
+        <h3>{{ input.propertyName }}</h3>
+        <span class="badge" [ngClass]="getQualityClass(input.materialQuality)">
+          {{ input.materialQuality }}
+        </span>
+      </div>
+     
+      <div class="card-body">
+        <div class="info-group">
+          <div class="info-item">
+            <span class="label">Client</span>
+            <p class="value">{{ input.userName }}</p>
+            <p class="sub-value">{{ input.userEmail }}</p>
+          </div>
+         
+          <div class="info-item">
+            <span class="label">Contact</span>
+            <p class="value">{{ input.phoneNumber }}</p>
+          </div>
+        </div>
+       
+        <div class="info-group">
+          <div class="info-item">
+            <span class="label">Location</span>
+            <p class="value">{{ input.city }}, {{ input.state }}</p>
+          </div>
+        </div>
+       
+        <div class="property-specs">
+          <div class="spec-item">
+            <span class="spec-label">Type</span>
+            <p class="spec-value">{{ input.constructionType }}</p>
+          </div>
+         
+          <div class="spec-item">
+            <span class="spec-label">Floors</span>
+            <p class="spec-value">{{ input.totalFloor }}</p>
+          </div>
+         
+          <div class="spec-item">
+            <span class="spec-label">Size</span>
+            <p class="spec-value">{{ input.length }}m × {{ input.width }}m</p>
+          </div>
+         
+          <div class="spec-item">
+            <span class="spec-label">Clearance</span>
+            <p class="spec-value">{{ input.landclearence ? 'Required' : 'Not Needed' }}</p>
+          </div>
+        </div>
+       
+        <div class="contractor-info" *ngIf="input.contractorId">
+          <span class="label">Contractor ID</span>
+          <p class="value">{{ input.contractorId }}</p>
+        </div>
+      </div>
+     
+      <div class="card-actions">
+        <button class="action-btn view-btn" (click)="onViewDetails(input)">View Details</button>
+        <button class="action-btn edit-btn" (click)="onEdit()">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

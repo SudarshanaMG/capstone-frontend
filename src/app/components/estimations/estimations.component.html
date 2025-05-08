@@ -1,0 +1,30 @@
+<div class="estimate-container">
+    <h2>Material Estimation</h2>
+  
+    <div *ngIf="isLoading">Loading estimate...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="estimate">
+      <p><strong>Total Cost:</strong> ₹{{ estimate.totalCost }}</p>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Cost (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let material of estimate.materials">
+            <td>{{ material.name }}</td>
+            <td>{{ material.quantity }}</td>
+            <td>{{ material.unit }}</td>
+            <td>{{ material.cost }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

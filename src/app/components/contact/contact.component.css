@@ -1,0 +1,138 @@
+.contact-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .contact-content {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .contact-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .contact-details h2,
+  .contact-form h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .contact-details p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-methods {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .contact-method {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .contact-method h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .contact-method p {
+    margin: 0;
+  }
+  
+  .contact-method a {
+    color: #4a90e2;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+  
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+  
+      &:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      }
+    }
+  
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #357abd;
+    }
+  
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+  .contact-form {
+      background-color: #f8f9fa;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  

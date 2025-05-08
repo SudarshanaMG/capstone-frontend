@@ -1,0 +1,71 @@
+<div class="input-form-container">
+    <h2>Add New Estimation Input</h2>
+  
+    <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Length</label>
+        <input type="number" formControlName="length" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Width</label>
+        <input type="number" formControlName="width" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" formControlName="phoneNumber" required />
+      </div>
+  
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" formControlName="city" required />
+      </div>
+  
+      <div class="form-group">
+        <label>State</label>
+        <input type="text" formControlName="state" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Construction Type</label>
+        <select formControlName="constructionType">
+          <option value="residential">NewConstruction</option>
+          <option value="commercial">Renovation</option>
+          <option value="commercial">InteriorDesign</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label>Total Floors</label>
+        <input type="number" formControlName="totalFloor" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Property Name</label>
+        <input type="text" formControlName="propertyName" required />
+      </div>
+  
+      <div class="form-group">
+        <label>Land Clearance</label>
+        <input type="checkbox" formControlName="landclearence" />
+      </div>
+  
+      <div class="form-group">
+        <label>Material Quality</label>
+        <select formControlName="materialQuality">
+          <option value="standard">Luxury</option>
+          <option value="premium">Premium</option>
+          <option value="economy">Basic</option>
+        </select>
+      </div>
+  
+      <!-- <div class="form-group">
+        <label>Contractor ID</label>
+        <input type="text" formControlName="contractorId" />
+      </div> -->
+  
+      <button type="submit" [disabled]="inputForm.invalid">Submit Input</button>
+    </form>
+  </div>
+  

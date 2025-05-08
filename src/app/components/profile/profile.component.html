@@ -1,0 +1,70 @@
+<div class="profile-container">
+    <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading profile...</p>
+    </div>
+    
+    <div *ngIf="error" class="error-card">
+      <div class="error-icon">!</div>
+      <p>{{ error }}</p>
+    </div>
+    
+    <div *ngIf="user && !isLoading" class="profile-card">
+      <div class="card-header">
+        <!-- <div class="avatar-container">
+          <div class="avatar">
+            Use first letter of name as a fallback
+            <span *ngIf="!user.profileImage">{{ user.name.charAt(0) }}</span>
+            <img *ngIf="user.profileImage" [src]="user.profileImage" alt="Profile Image">
+          </div>
+        </div> -->
+        <div class="user-name">
+          <h1>{{ user.name }}</h1>
+          <span class="user-role" *ngIf="user.role">{{ user.role }}</span>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <h2>Contact Information</h2>
+        
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fa fa-envelope"></i>
+            </div>
+            <div class="info-content">
+              <span class="label">Email</span>
+              <span class="value">{{ user.email }}</span>
+            </div>
+          </div>
+          
+          <div class="info-item" *ngIf="user.contactNumber">
+            <div class="info-icon">
+              <i class="fa fa-phone"></i>
+            </div>
+            <div class="info-content">
+              <span class="label">Phone</span>
+              <span class="value">{{ user.contactNumber }}</span>
+            </div>
+          </div>
+          
+          <div class="info-item" *ngIf="user.address">
+            <div class="info-icon">
+              <i class="fa fa-map-marker"></i>
+            </div>
+            <div class="info-content">
+              <span class="label">Address</span>
+              <span class="value address-value">
+                {{ user.address.line1 }}, {{ user.address.city }},<br>
+                {{ user.address.state }} - {{ user.address.pincode }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-footer" *ngIf="user.createdAt">
+        <p>Member since: {{ user.createdAt | date:'mediumDate' }}</p>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,31 @@
+<div class="login-container">
+    <div class="login-card">
+      <h2 class="text-center mb-4">Login as {{ userType | titlecase }}</h2>
+  
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+            class="form-text text-danger">
+            Please enter a valid email address.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+            class="form-text text-danger">
+            Password is required.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+      </form>
+  
+      <div class="mt-3 text-center">
+        <a routerLink="/register">Don't have an account? Register</a>
+      </div>
+    </div>
+  </div>
