@@ -8,9 +8,9 @@ export interface MaterialEstimate {
   inputId: string;
   totalCost: number;
   materials: {
-    name: string;
-    quantity: number;
-    unit: string;
+    resourceName: string;
+    resourceQuantity: number;
+    unitPrice: string;
     cost: number;
   }[];
   createdAt: Date;

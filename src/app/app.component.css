@@ -40,3 +40,16 @@ nav {
     display: none;
     cursor: pointer;
 }
+.logout-btn {
+    background-color: rgb(245, 94, 94);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  
+  .logout-btn:hover {
+    background-color: darkred;
+  }

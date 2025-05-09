@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,14 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend';
-  constructor(public router: Router) {}
+  constructor(public router: Router, private authService: AuthService) {}
 
   shouldShowNavbar(): boolean {
-    return !['/login', '/register'].includes(this.router.url);
+    return !['/login', '/register', '/dashboard'].includes(this.router.url);
   }
+  logout() {
+    this.authService.logout();  // Calls logout from AuthService
+    this.router.navigate(['/login']);  // Redirect to login page
+  }
+
 }

@@ -1,0 +1,291 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  }
+  
+  body {
+    background-color: #f9fafb;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  button {
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Layout */
+  .user-management {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .page-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .back-btn {
+    padding: 0.6rem 1rem;
+    background-color: transparent;
+    color: #4a6cf7;
+    border: 1px solid #4a6cf7;
+    font-size: 0.9rem;
+  }
+  
+  .back-btn:hover {
+    background-color: #4a6cf7;
+    color: white;
+  }
+  
+  .content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Users Table */
+  .users-table {
+    overflow-x: auto;
+    padding: 1rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  thead {
+    background-color: #f5f7fa;
+  }
+  
+  th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  td {
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  tr:hover {
+    background-color: #f9f9fb;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+  }
+  
+  .edit-btn {
+    background-color: #4a6cf7;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #3a5ce5;
+  }
+  
+  .delete-btn {
+    background-color: #f74a4a;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e53a3a;
+  }
+  
+  /* Edit Form */
+  .edit-form {
+    padding: 2rem;
+  }
+  
+  .edit-form h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #666;
+  }
+  
+  input,
+  select {
+    padding: 0.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.1);
+  }
+  
+  .form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .form-actions button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  .form-actions button[type="submit"] {
+    background-color: #4a6cf7;
+    color: white;
+  }
+  
+  .form-actions button[type="submit"]:hover:not(:disabled) {
+    background-color: #3a5ce5;
+  }
+  
+  .form-actions button[type="button"] {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #666;
+  }
+  
+  .form-actions button[type="button"]:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    .users-table {
+      padding: 0.5rem;
+    }
+  
+    th,
+    td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.85rem;
+    }
+  
+    .actions {
+      flex-direction: column;
+    }
+  
+    .edit-form {
+      padding: 1rem;
+    }
+  
+    form {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Status Indicator */
+  td:nth-child(4) {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  td:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4acf7e;
+  }
+  
+  td:nth-child(4):contains("inactive")::before {
+    background-color: #f74a4a;
+  }
+  
+  /* Animation Effects */
+  .edit-btn,
+  .delete-btn,
+  .back-btn,
+  .form-actions button {
+    transition: transform 0.1s ease, background-color 0.3s ease;
+  }
+  
+  .edit-btn:active,
+  .delete-btn:active,
+  .back-btn:active,
+  .form-actions button:active {
+    transform: scale(0.97);
+  }
+  
+  /* Empty State */
+  .users-table:empty::after {
+    content: "No users found";
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+  }
+  

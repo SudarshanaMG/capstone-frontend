@@ -8,6 +8,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { InputsComponent } from './components/inputs/inputs.component';
 import { EstimateComponent } from './components/estimations/estimations.component';
 import { NewEstimationInputsComponent } from './components/new-estimation-inputs/new-estimation-inputs.component';
+import { UserManagementComponent } from './components/user-management/user-management.component';
+import { ContractorManagementComponent } from './components/contractor-management/contractor-management.component';
+import { ContractorLoginComponent } from './components/contractor-login/contractor-login.component';
+import { ContractorDashboardComponent } from './components/contractor-dashboard/contractor-dashboard.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route, redirects to card
@@ -21,5 +25,9 @@ export const routes: Routes = [
     { path: 'estimations', component: EstimateComponent },
     { path: 'estimate/:inputId', component: EstimateComponent },
     { path: 'add-input', component: NewEstimationInputsComponent},
+    { path: 'admin/users', component: UserManagementComponent},
+    { path: 'admin/contractors', component: ContractorManagementComponent},
+    { path: 'contractor/login', component: ContractorLoginComponent},
+    { path: 'contractor/dashboard', component: ContractorDashboardComponent},
     { path: '**', redirectTo: 'login' },
 ];

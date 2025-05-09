@@ -1,0 +1,185 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Form container */
+  .input-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading styles */
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+  }
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  /* Label styling */
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Input fields styling */
+  input[type="text"],
+  input[type="number"],
+  input[type="tel"],
+  select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333;
+    transition: border 0.3s ease;
+    outline: none;
+    background-color: #f9f9f9;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    background-color: #fff;
+  }
+  
+  /* Checkbox styling */
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    vertical-align: middle;
+    accent-color: #3498db;
+    cursor: pointer;
+  }
+  
+  /* Select styling */
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+  }
+  
+  /* Button styling */
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  button[type="submit"]:hover {
+    background: linear-gradient(to right, #2980b9, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  button[type="submit"]:active {
+    transform: translateY(0);
+  }
+  
+  button[type="submit"]:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Error state for inputs */
+  input.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .input-form-container {
+      margin: 20px;
+      padding: 20px;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    select {
+      padding: 10px;
+    }
+    
+    button[type="submit"] {
+      padding: 12px;
+    }
+  }
+  
+  /* Custom checkbox layout */
+  .form-group:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group:has(input[type="checkbox"]) label {
+    margin-bottom: 0;
+    margin-left: 5px;
+  }
+  
+  /* Optional: Animation for form appearance */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .input-form-container {
+    animation: fadeIn 0.5s ease forwards;
+  }

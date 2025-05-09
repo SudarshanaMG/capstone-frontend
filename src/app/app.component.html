@@ -1,21 +1,23 @@
 <nav *ngIf="shouldShowNavbar()">
-    <div class="nav-container">
-        <div class="logo">YourBrand</div>
-        <ul class="nav-links">
-          <li><a routerLink="/home">Home</a></li>
-          <li><a routerLink="/inputs">View Inputs</a></li>
-          <li><a routerLink="/estimations">Estimation</a></li>
-          <li><a routerLink="/contact">Contact</a></li>
-          <li><a routerLink="/profile">Profile</a></li>
-        </ul>
-        <div class="hamburger">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </div>
-      </div>
-  </nav>
+  <div class="nav-container">
+    <div class="logo">YourBrand</div>
+    <ul class="nav-links">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/inputs">View Inputs</a></li>
+      <!-- <li><a routerLink="/estimations">Estimation</a></li> -->
+      <li><a routerLink="/contact">Contact</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><button class="logout-btn" (click)="logout()">Logout</button></li> <!-- Logout Button -->
+    </ul>
+    <div class="hamburger">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </div>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>

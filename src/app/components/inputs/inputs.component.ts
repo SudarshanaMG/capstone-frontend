@@ -44,9 +44,9 @@ export class InputsComponent {
     switch(quality.toLowerCase()) {
       case 'premium':
         return 'quality-premium';
-      case 'standard':
+      case 'Luxury':
         return 'quality-standard';
-      case 'economy':
+      case 'basic':
         return 'quality-economy';
       default:
         return '';
@@ -54,7 +54,7 @@ export class InputsComponent {
   }
 
   onViewDetails(input: UserInput): void {
-    this.router.navigate(['/estimate', input._id]);
+    this.router.navigate([`/estimate`, input._id]);
   }
   
 
