@@ -1,8 +1,8 @@
 // contractor-dashboard.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContractorService } from '../../services/contractor.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-contractor-dashboard',
@@ -17,21 +17,24 @@ export class ContractorDashboardComponent implements OnInit {
 
   constructor(
     private contractorService: ContractorService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
-    const contractorId = localStorage.getItem('contractorId'); // assuming contractor ID is stored here
-    if (contractorId) {
-      this.contractorService.getContractorWithInputs(contractorId).subscribe({
-        next: (data) => {
-          this.contractor = data.newcontractor;
-          this.inputs = data.inputs;
-        },
-        error: (err) => {
-          console.error('Failed to load contractor data', err);
-        }
-      });
+    if (isPlatformBrowser(this.platformId)) {
+      const contractorId = localStorage.getItem('contractorId');
+      if (contractorId) {
+        this.contractorService.getContractorWithInputs(contractorId).subscribe({
+          next: (data) => {
+            this.contractor = data.newcontractor;
+            this.inputs = data.inputs;
+          },
+          error: (err) => {
+            console.error('Failed to load contractor data', err);
+          }
+        });
+      }
     }
   }
 
@@ -40,7 +43,6 @@ export class ContractorDashboardComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('contractorId'); // clear token or ID
-    this.router.navigate(['/login']);
+    this.contractorService.logout();
   }
 }

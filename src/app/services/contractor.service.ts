@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Contractor } from '../models/contractor.model';
 import { LoginPayload } from '../models/login.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { LoginPayload } from '../models/login.model';
 export class ContractorService {
   private baseUrl = 'http://localhost:3003/api/contractor';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
     login(email: string, password: string): Observable<{ token: string}> {
       const payload: LoginPayload = { email, password };
@@ -24,6 +25,12 @@ export class ContractorService {
           return throwError(() => new Error(message));
         })
       );
+    }
+
+    logout(): void {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userType');
+      this.router.navigate(['/login']);
     }
 
   getAllContractors(): Observable<Contractor[]> {
