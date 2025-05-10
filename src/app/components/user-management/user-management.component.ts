@@ -80,16 +80,15 @@ export class UserManagementComponent implements OnInit {
     this.editForm.reset();
   }
 
-  deleteUser(userEmail: string) {
+  deleteUser(userId: string) {
     if (confirm('Are you sure you want to delete this user?')) {
-      this.authService.deleteUser(userEmail).subscribe({
-        next: () => this.users = this.users.filter(user => user.email !== userEmail),
+      this.authService.deleteUser(userId).subscribe({
+        next: () => {
+          this.users = this.users.filter(user => user._id !== userId);
+        },
         error: (err) => console.error('Delete failed:', err)
       });
     }
   }
 
-  goBack(){
-    this.router.navigate(['/dashboard']);
-  }
 }

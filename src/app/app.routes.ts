@@ -22,7 +22,7 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'inputs', component: InputsComponent },
-    { path: 'estimations', component: EstimateComponent },
+    // { path: 'estimations', component: EstimateComponent },
     { path: 'estimate/:inputId', component: EstimateComponent },
     { path: 'add-input', component: NewEstimationInputsComponent},
     { path: 'admin/users', component: UserManagementComponent},

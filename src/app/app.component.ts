@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(public router: Router, private authService: AuthService) {}
 
   shouldShowNavbar(): boolean {
-    return !['/login', '/register', '/dashboard'].includes(this.router.url);
+    return !['/login', '/register', '/dashboard', '/contractor/login', 'admin/users', 'admin/contractors', 'contractor/dashboard'].includes(this.router.url);
   }
   logout() {
     this.authService.logout();  // Calls logout from AuthService

@@ -1,15 +1,45 @@
-<div class="dashboard-container">
-    <header class="dashboard-header">
-      <h1>Contractor Dashboard</h1>
-      <button class="logout-btn" (click)="logout()">Logout</button>
-    </header>
-    
-    <div class="dashboard-content">
-      <div class="dashboard-card">
-        <h2>Welcome to your Dashboard</h2>
-        <p>Here you can manage your projects and estimates.</p>
+<nav *ngIf="shouldShowNavbar()">
+  <div class="nav-container">
+      <div class="logo">YourBrand</div>
+      <ul class="nav-links">
+        <li><a routerLink="/contractor/dashboard">Home</a></li>
+        <!-- <li><a routerLink="/inputs">View Inputs</a></li> -->
+        <!-- <li><a routerLink="/estimations">Estimation</a></li> -->
+        <!-- <li><a routerLink="/contact">Contact</a></li> -->
+        <li><a routerLink="/profile">Profile</a></li>
+      </ul>
+      <div class="hamburger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </div>
-      
-      <!-- Add more dashboard content here -->
     </div>
-  </div> 
+</nav>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Contractor Dashboard</h1>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <section *ngIf="contractor">
+    <h2>Welcome, {{ contractor.name }}</h2>
+    <p>Email: {{ contractor.email }}</p>
+    <p>Phone: {{ contractor.phone }}</p>
+  </section>
+
+  <section *ngIf="inputs.length > 0">
+    <h3>Your Assigned Inputs</h3>
+    <ul>
+      <li *ngFor="let input of inputs">
+        {{ input.name }} — {{ input.quantity }} {{ input.unit }}
+      </li>
+    </ul>
+  </section>
+
+  <section *ngIf="inputs.length === 0">
+    <p>No inputs assigned to you yet.</p>
+  </section>
+</div>

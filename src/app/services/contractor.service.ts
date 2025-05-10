@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Contractor } from '../models/contractor.model';
+import { LoginPayload } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,20 @@ export class ContractorService {
   private baseUrl = 'http://localhost:3003/api/contractor';
 
   constructor(private http: HttpClient) {}
+
+    login(email: string, password: string): Observable<{ token: string}> {
+      const payload: LoginPayload = { email, password };
+      return this.http.post<{ token: string}>(`${this.baseUrl}/login`, payload).pipe(
+        tap(response => {
+          localStorage.setItem('token', response.token);
+        }),
+        catchError((error) => {
+          console.log(error);
+          const message = error.error?.message || 'Login failed';
+          return throwError(() => new Error(message));
+        })
+      );
+    }
 
   getAllContractors(): Observable<Contractor[]> {
     return this.http.get<Contractor[]>(`${this.baseUrl}`);
@@ -38,8 +53,12 @@ export class ContractorService {
     return this.http.get<{ contractorId: string }>(`${this.baseUrl}/specialization`, { params });
   }
 
-  getContractorWithInputs(id: string): Observable<{ newcontractor: Contractor, inputs: any[] }> {
-    return this.http.get<{ newcontractor: Contractor, inputs: any[] }>(`${this.baseUrl}/${id}/with-inputs`);
+  // getContractorWithInputs(id: string): Observable<{ newcontractor: Contractor, inputs: any[] }> {
+  //   return this.http.get<{ newcontractor: Contractor, inputs: any[] }>(`${this.baseUrl}/${id}/with-inputs`);
+  // }
+
+  getContractorWithInputs(contractorId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${contractorId}/with-inputs`);
   }
 
   updateContractor(id: string, contractorData: any) {

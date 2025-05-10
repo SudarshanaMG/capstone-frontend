@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ContractorService } from '../../services/contractor.service';
 
 @Component({
   selector: 'app-contractor-login',
@@ -17,7 +18,8 @@ export class ContractorLoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private contractorService: ContractorService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -25,13 +27,18 @@ export class ContractorLoginComponent {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      // TODO: Implement actual authentication service
-      // For now, we'll just navigate to the dashboard
-      this.router.navigate(['/contractor/dashboard']);
-    } else {
-      this.errorMessage = 'Please fill in all fields correctly';
+      const { email, password } = this.loginForm.value;
+      this.contractorService.login(email, password).subscribe({
+        next: (response) => {
+            this.router.navigate(['/contractor/dashboard']);
+        },
+        error: (error: Error) => {
+          console.log('Login error:', error);
+          this.errorMessage = error.message;
+        }
+      });
     }
   }
 } 
