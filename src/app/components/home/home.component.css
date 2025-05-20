@@ -5,11 +5,13 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
+/* body {
     min-height: 100vh;
+    background-image: url(https://media.istockphoto.com/id/579157120/vector/construction-skyline-scene-blue-background.jpg?s=612x612&w=0&k=20&c=igltrPF2-r-2onl82frfP0wk8Q_TL428NE1UErg9UBM=);
     display: flex;
     flex-direction: column;
-}
+} */
+
 
 /* Navigation Bar */
 nav {
@@ -59,7 +61,7 @@ nav {
 header {
     text-align: center;
     padding: 5rem 1rem;
-    background-color: #f8f9fa;
+    background-color: #c7dff7;
     border-bottom: 1px solid #e9ecef;
 }
 

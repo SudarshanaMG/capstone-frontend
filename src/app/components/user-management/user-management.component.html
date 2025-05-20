@@ -6,14 +6,13 @@
   
     <div class="content">
       <!-- Table displaying users -->
-      <div class="users-table" *ngIf="!isEditing">
+      <div class="users-table" *ngIf="!isEditing && !isViewing">
         <table>
           <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Status</th>
               <th>Created At</th>
               <th>Actions</th>
             </tr>
@@ -27,6 +26,7 @@
               <td class="actions">
                 <button class="edit-btn" (click)="editUser(user)">Edit</button>
                 <button class="delete-btn" (click)="deleteUser(user._id!)">Delete</button>
+                <button class="view-btn" (click)="viewInputs(user.email)">View Inputs</button>
               </td>
             </tr>
           </tbody>
@@ -47,10 +47,10 @@
             <input type="email" id="email" formControlName="email" />
           </div>
   
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" formControlName="password" />
-          </div>
+          </div> -->
   
           <div class="form-group">
             <label for="contactNumber">Contact Number</label>
@@ -61,38 +61,33 @@
             <label for="role">Role</label>
             <select id="role" formControlName="role">
               <option value="homeowner">Homeowner</option>
-              <option value="contractor">Contractor</option>
               <option value="admin">Admin</option>
             </select>
           </div>
   
-          <div class="form-group">
-            <label for="status">Status</label>
-            <select id="status" formControlName="status">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
+          <div [formGroupName]="'address'">
+            <div class="form-group">
+              <label for="address-line1">Address Line 1</label>
+              <input type="text" id="address-line1" formControlName="line1" />
+            </div>
+          
+            <div class="form-group">
+              <label for="address-city">City</label>
+              <input type="text" id="address-city" formControlName="city" />
+            </div>
+          
+            <div class="form-group">
+              <label for="address-state">State</label>
+              <input type="text" id="address-state" formControlName="state" />
+            </div>
+          
+            <div class="form-group">
+              <label for="address-pincode">Pincode</label>
+              <input type="text" id="address-pincode" formControlName="pincode" />
+            </div>
           </div>
-  
-          <div class="form-group">
-            <label for="address-line1">Address Line 1</label>
-            <input type="text" id="address-line1" formControlName="address.line1" />
-          </div>
-  
-          <div class="form-group">
-            <label for="address-city">City</label>
-            <input type="text" id="address-city" formControlName="address.city" />
-          </div>
-  
-          <div class="form-group">
-            <label for="address-state">State</label>
-            <input type="text" id="address-state" formControlName="address.state" />
-          </div>
-  
-          <div class="form-group">
-            <label for="address-pincode">Pincode</label>
-            <input type="text" id="address-pincode" formControlName="address.pincode" />
-          </div>
+          
+
   
           <div class="form-actions">
             <button type="submit" [disabled]="editForm.invalid">Save</button>
@@ -101,5 +96,98 @@
         </form>
       </div>
     </div>
+
+    <div class="input-list-container" *ngIf="isViewing">
+      <div class="form-actions">
+        <button type="button" class="action-btn edit-btn" (click)="cancelView()">Go Back</button>
+      </div>
+    
+      <div class="loading-container" *ngIf="isLoading">
+        <div class="loader"></div>
+        <p>Loading estimations...</p>
+      </div>
+     
+      <div class="error-message" *ngIf="error">{{ error }}</div>
+    
+      <div class="empty-state" *ngIf="!isLoading && !inputs.length">
+        <p>No Inputs found</p>
+        <span>Add your first estimation to get started</span>
+      </div>
+    
+      <div class="cards-container" *ngIf="!isLoading && inputs.length">
+        <div class="input-card" *ngFor="let input of inputs">
+          <div class="card-header">
+            <h3>{{ input.propertyName }}</h3>
+            <span class="badge" [ngClass]="getQualityClass(input.materialQuality)">
+              {{ input.materialQuality }}
+            </span>
+          </div>
+         
+          <div class="card-body">
+            <div class="info-group">
+              <div class="info-item">
+                <span class="label">Client</span>
+                <p class="value">{{ input.userName }}</p>
+                <p class="sub-value">{{ input.userEmail }}</p>
+              </div>
+             
+              <div class="info-item">
+                <span class="label">Contact</span>
+                <p class="value">{{ input.phoneNumber }}</p>
+              </div>
+            </div>
+           
+            <div class="info-group">
+              <div class="info-item">
+                <span class="label">Location</span>
+                <p class="value">{{ input.city }}, {{ input.state }}</p>
+              </div>
+            </div>
+           
+            <div class="property-specs">
+              <div class="spec-item">
+                <span class="spec-label">Type</span>
+                <p class="spec-value">{{ input.constructionType }}</p>
+              </div>
+             
+              <div class="spec-item">
+                <span class="spec-label">Floors</span>
+                <p class="spec-value">{{ input.totalFloor }}</p>
+              </div>
+             
+              <div class="spec-item">
+                <span class="spec-label">Size</span>
+                <p class="spec-value">{{ input.length }}m × {{ input.width }}m</p>
+              </div>
+             
+              <div class="spec-item">
+                <span class="spec-label">Clearance</span>
+                <p class="spec-value">{{ input.landclearence ? 'Required' : 'Not Needed' }}</p>
+              </div>
+            </div>
+           
+            <!-- <div class="contractor-info" *ngIf="input.contractorId" >
+              <span class="label">Contractor ID</span>
+              <p class="value">{{ input.contractorId }}</p>
+              <p *ngIf="getContractor(input.contractorId)">{{ contractorName }}</p> 
+             </div>-->
+            <div class="contractor-info" *ngIf="input.contractorName">
+              <span class="label">Contractor name:</span>
+              <p class="value">{{ input.contractorName }}</p>
+            </div>
+            <!-- <div class="contractor-info" *ngIf="contractorName">
+              <span class="label">Contractor</span>
+              <p class="value">{{ contractorName }}</p>
+            </div>
+          </div> -->
+         
+          <div class="card-actions">
+            <button *ngIf="input.done" class="action-btn view-btn" (click)="onViewDetails(input)">View Estimations</button>
+            <button *ngIf="!input.done" class="action-btn edit-btn" (click)="onEdit(input)">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</div>

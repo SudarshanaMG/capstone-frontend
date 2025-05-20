@@ -29,8 +29,7 @@ export class ContractorService {
 
     logout(): void {
       localStorage.removeItem('token');
-      localStorage.removeItem('userType');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/contractor/login']);
     }
 
   getAllContractors(): Observable<Contractor[]> {

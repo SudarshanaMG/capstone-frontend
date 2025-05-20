@@ -12,5 +12,8 @@ export interface UserInput {
     propertyName: string ,
     landclearence: Boolean ,
     materialQuality: string ,
-    contractorId: string  
+    contractorId: string ,
+    contractorName: string,
+    done: Boolean,
+    totalCost: Number
   }

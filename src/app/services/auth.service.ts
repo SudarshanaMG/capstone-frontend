@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID  } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { LoginPayload } from '../models/login.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ import { LoginPayload } from '../models/login.model';
 export class AuthService {
   private API_URL = 'http://localhost:3001/api/users'; // Replace with your backend URL
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {}
+
+  private isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
 
   register(user: User): Observable<any> {
     return this.http.post(`${this.API_URL}/register`, user);
@@ -22,8 +27,10 @@ export class AuthService {
     const payload: LoginPayload = { email, password };
     return this.http.post<{ token: string; role: string }>(`${this.API_URL}/login`, payload).pipe(
       tap(response => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('role', role);
+        if (this.isBrowser()) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('role', role);
+        }
       }),
       catchError((error) => {
         console.log(error);
@@ -36,13 +43,15 @@ export class AuthService {
   
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userType');
+    if (this.isBrowser()) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userType');
+    }
     this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return this.isBrowser() && !!localStorage.getItem('token');
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -54,8 +63,13 @@ export class AuthService {
   }
 
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders({ Authorization: `Bearer ${token}` });
+    if (this.isBrowser()) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        return new HttpHeaders({ Authorization: `Bearer ${token}` });
+      }
+    }
+    return new HttpHeaders();
   }
 
   getAllUsers(): Observable<User[]> {
@@ -66,6 +80,12 @@ export class AuthService {
 
   getProfile(): Observable<User> {
     return this.http.get<User>(`${this.API_URL}/profile`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  getPhoneNumber(): Observable<String> {
+    return this.http.get<String>(`${this.API_URL}/phoneNumber`, {
       headers: this.getAuthHeaders()
     });
   }

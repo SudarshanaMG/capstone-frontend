@@ -1,6 +1,8 @@
 :host {
     display: block;
-    background-color: #f3f2f2;
+    /* background-color: #f3f2f2;
+     */
+     background-color: #c7dff7;
     font-family: 'Poppins', sans-serif;
   }
   
@@ -130,6 +132,20 @@
     opacity: 0.9;
     font-weight: 300;
   }
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0056b3;
+  }
+  
   
   .card-body {
     padding: 30px 25px;

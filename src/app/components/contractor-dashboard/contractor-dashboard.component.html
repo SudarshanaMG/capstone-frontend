@@ -1,12 +1,12 @@
 <nav *ngIf="shouldShowNavbar()">
   <div class="nav-container">
-      <div class="logo">YourBrand</div>
+      <div class="logo">CostEstimator</div>
       <ul class="nav-links">
-        <li><a routerLink="/contractor/dashboard">Home</a></li>
+        <!-- <li><a routerLink="/contractor/dashboard">Home</a></li> -->
         <!-- <li><a routerLink="/inputs">View Inputs</a></li> -->
         <!-- <li><a routerLink="/estimations">Estimation</a></li> -->
         <!-- <li><a routerLink="/contact">Contact</a></li> -->
-        <li><a routerLink="/profile">Profile</a></li>
+        <!-- <li><a routerLink="/profile">Profile</a></li> -->
         <li><button class="logout-btn" (click)="logout()">Logout</button></li> <!-- Logout Button -->
       </ul>
       <div class="hamburger">
@@ -26,20 +26,37 @@
 
   <section *ngIf="contractor">
     <h2>Welcome, {{ contractor.name }}</h2>
+    <p>id: {{contractor._id}}</p>
     <p>Email: {{ contractor.email }}</p>
-    <p>Phone: {{ contractor.phone }}</p>
+    <p>Phone: {{ contractor.contactNumber }}</p>
   </section>
 
-  <section *ngIf="inputs.length > 0">
+  <section *ngIf="inputs && inputs.length > 0">
     <h3>Your Assigned Inputs</h3>
     <ul>
       <li *ngFor="let input of inputs">
-        {{ input.name }} — {{ input.quantity }} {{ input.unit }}
+        <strong>{{ input.propertyName }}</strong> — {{ input.constructionType }}<br>
+        Location: {{ input.city }}, {{ input.state }}<br>
+        Dimensions: {{ input.length }}ft × {{ input.width }}ft<br>
+        HomerOwner: {{ input.userName }} ({{ input.userEmail }})<br>
+        <!-- totalCost: {{ input.totalCost }}<br> -->
+        <!-- Estimation Done? {{ input.done ? 'Yes' : 'No' }} <br> -->
+        <button 
+        *ngIf="!input.done" 
+        (click)="calculateEstimation(input)" 
+        class="calculate-button">
+        Calculate Estimation
+      </button>
+      
+        <div class="estimation-result">
+          <strong>Total Cost:</strong> ₹{{ input.totalCost }}
+        </div>
       </li>
     </ul>
+   
   </section>
-
-  <section *ngIf="inputs.length === 0">
+  
+  <section *ngIf="inputs && inputs.length === 0">
     <p>No inputs assigned to you yet.</p>
   </section>
-</div>
+  

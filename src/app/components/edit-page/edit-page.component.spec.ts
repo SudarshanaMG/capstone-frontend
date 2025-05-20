@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InputCardComponent } from './input-card.component';
+import { EditPageComponent } from './edit-page.component';
 
-describe('InputCardComponent', () => {
-  let component: InputCardComponent;
-  let fixture: ComponentFixture<InputCardComponent>;
+describe('EditPageComponent', () => {
+  let component: EditPageComponent;
+  let fixture: ComponentFixture<EditPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InputCardComponent]
+      imports: [EditPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InputCardComponent);
+    fixture = TestBed.createComponent(EditPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

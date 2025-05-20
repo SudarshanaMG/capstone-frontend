@@ -12,6 +12,7 @@ import { UserManagementComponent } from './components/user-management/user-manag
 import { ContractorManagementComponent } from './components/contractor-management/contractor-management.component';
 import { ContractorLoginComponent } from './components/contractor-login/contractor-login.component';
 import { ContractorDashboardComponent } from './components/contractor-dashboard/contractor-dashboard.component';
+import { EditProfileComponent } from './components/edit-page/edit-page.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route, redirects to card
@@ -29,5 +30,6 @@ export const routes: Routes = [
     { path: 'admin/contractors', component: ContractorManagementComponent},
     { path: 'contractor/login', component: ContractorLoginComponent},
     { path: 'contractor/dashboard', component: ContractorDashboardComponent},
+    { path: 'edit-page', component: EditProfileComponent},
     { path: '**', redirectTo: 'login' },
 ];

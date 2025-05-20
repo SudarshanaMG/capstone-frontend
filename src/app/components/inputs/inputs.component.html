@@ -15,7 +15,6 @@
   <div class="error-message" *ngIf="error">{{ error }}</div>
 
   <div class="empty-state" *ngIf="!isLoading && !inputs.length">
-    <img src="/assets/images/empty-state.svg" alt="No estimations">
     <p>No property estimations found</p>
     <span>Add your first estimation to get started</span>
   </div>
@@ -72,15 +71,24 @@
           </div>
         </div>
        
-        <div class="contractor-info" *ngIf="input.contractorId">
+        <!-- <div class="contractor-info" *ngIf="input.contractorId" >
           <span class="label">Contractor ID</span>
           <p class="value">{{ input.contractorId }}</p>
+          <p *ngIf="getContractor(input.contractorId)">{{ contractorName }}</p> 
+         </div>-->
+        <div class="contractor-info" *ngIf="input.contractorName">
+          <span class="label">Contractor name:</span>
+          <p class="value">{{ input.contractorName }}</p>
         </div>
-      </div>
+        <!-- <div class="contractor-info" *ngIf="contractorName">
+          <span class="label">Contractor</span>
+          <p class="value">{{ contractorName }}</p>
+        </div>
+      </div> -->
      
       <div class="card-actions">
-        <button class="action-btn view-btn" (click)="onViewDetails(input)">View Details</button>
-        <button class="action-btn edit-btn" (click)="onEdit()">Edit</button>
+        <button *ngIf="input.done" class="action-btn view-btn" (click)="onViewDetails(input)">View Estimations</button>
+        <button *ngIf="!input.done" class="action-btn edit-btn" (click)="onEdit(input)">Edit</button>
       </div>
     </div>
   </div>

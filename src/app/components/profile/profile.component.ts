@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ export class ProfileComponent {
   isLoading = true;
   error: string | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadUserProfile();
@@ -34,4 +35,9 @@ export class ProfileComponent {
       }
     });
   }
+  editProfile(): void {
+    this.router.navigate(['/edit-page'], {
+      state: { userData: this.user }
+    });
+  }  
 }

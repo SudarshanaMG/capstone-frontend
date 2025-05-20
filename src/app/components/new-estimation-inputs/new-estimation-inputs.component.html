@@ -3,19 +3,19 @@
   
     <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label>Length</label>
+        <label>Length(ft)</label>
         <input type="number" formControlName="length" required />
       </div>
   
       <div class="form-group">
-        <label>Width</label>
+        <label>Width(ft)</label>
         <input type="number" formControlName="width" required />
       </div>
   
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>Phone Number</label>
         <input type="tel" formControlName="phoneNumber" required />
-      </div>
+      </div> -->
   
       <div class="form-group">
         <label>City</label>
@@ -59,8 +59,21 @@
           <option value="basic">Basic</option>
         </select>
       </div>
+      <!-- <div class="contractor-filter">
+        <label for="specialization">Find Contractor by Specialization:</label>
+        <input id="specialization" type="text" [(ngModel)]="specialization" [ngModelOptions]="{ standalone: true }" placeholder="e.g., Interior Designing" />
+        <button (click)="findContractor()">Search</button>
+      </div>
+      
+      <div *ngIf="contractorId">
+        <h4>Available Contractor ID:</h4>
+        <p>{{ contractorId }}</p>
+      </div>
+      
+      <div class="error-message" *ngIf="contractorError">{{ contractorError }}</div>
+    
   
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label>Contractor ID</label>
         <input type="text" formControlName="contractorId" />
       </div> -->

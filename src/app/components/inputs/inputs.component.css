@@ -1,5 +1,6 @@
 .input-list-container {
     max-width: 1200px;
+    background-color: #c7dff7;
     margin: 0 auto;
     padding: 24px;
     font-family: 'Roboto', sans-serif;
@@ -168,8 +169,8 @@
     color: #333;
   }
   
-  .input-card .card-header .badge.quality-standard {
-    background-color: #90caf9;
+  .input-card .card-header .badge.quality-luxury {
+    background-color: #feffff;
     color: #0d47a1;
   }
   
@@ -251,7 +252,7 @@
   }
   
   .input-card .contractor-info {
-    background-color: #f5f5f5;
+    background-color: #ebecee;
     padding: 12px;
     border-radius: 4px;
   }

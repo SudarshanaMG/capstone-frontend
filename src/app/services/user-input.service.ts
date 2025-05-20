@@ -15,10 +15,20 @@ export class UserInputService {
     return this.http.get<UserInput[]>(`${this.baseUrl}/getByName`);
   }
 
+  getInputsByEmail(email: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/getByEmail`, {
+      params: { email }
+    });
+  }  
+
   addInput(inputData: Partial<UserInput>): Observable<UserInput> {
     return this.http.post<UserInput>(`${this.baseUrl}/`, inputData);
   }
 
+  updateInput(id: string, inputData: Partial<UserInput>): Observable<UserInput> {
+    return this.http.put<UserInput>(`${this.baseUrl}/${id}`, inputData);
+  }
+  
   getInputs(): Observable<UserInput[]> {
     return this.http.get<UserInput[]>(`${this.baseUrl}/`);
   }

@@ -84,6 +84,12 @@ h2 {
   color: #dc3545;
 }
 
+/* .center-wrapper {
+  max-width: 300px; /* Adjust width as needed */
+  /* margin: 0 auto;
+}  */
+
+
 .btn {
   cursor: pointer;
   padding: 12px 20px;

@@ -33,6 +33,7 @@ export class EstimateComponent implements OnInit {
         },
         error: (err: any) => {
           this.error = err.error.message || 'Failed to load estimate.';
+          console.log(this.error);
           this.isLoading = false;
         }
       });
